@@ -8,11 +8,15 @@
     <title>MPC Chauffage - Expert en pompes à chaleur en Île-de-France</title>
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
-    <!-- Header déduit (Hypothèse de structure classique) -->
+    <!-- ================= HEADER AVEC LOGO ================= -->
     <header class="header">
         <div class="container header-container">
-            <a href="index.html" class="logo-text">MPC Chauffage</a>
+            <!-- Lien avec image du logo -->
+            <a href="index.html" class="logo-link" title="Retour à l'accueil">
+                <img src="assets/img/logos/MPC.png" alt="Logo MPC Chauffage" class="header-logo" onerror="this.src='https://placehold.co/200x50/2563eb/white?text=LOGO+MPC'" />
+            </a>
             <nav class="main-nav">
                 <a href="index.html" class="active">Accueil</a>
                 <a href="services.html">Nos services</a>
@@ -234,8 +238,38 @@
         </section>
     </main>
 
+    <!-- ================= FOOTER ENRICHI AVEC LOGO ================= -->
     <footer class="footer">
-        <div class="container text-center">
+        <div class="container footer-content">
+            <!-- Colonne 1 : Logo et Description -->
+            <div class="footer-brand">
+                <a href="index.html">
+                    <img src="assets/img/logos/MPC.png" alt="Logo MPC Chauffage" class="footer-logo" onerror="this.src='https://placehold.co/200x50/ffffff/111827?text=LOGO+MPC'" />
+                </a>
+                <p class="footer-desc">
+                    Votre expert certifié RGE en pompes à chaleur, climatisation et entretien en Île-de-France.
+                </p>
+            </div>
+
+            <!-- Colonne 2 : Liens rapides -->
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Nos services</a>
+                <a href="contact.html">Demander un devis</a>
+            </div>
+
+            <!-- Colonne 3 : Contact -->
+            <div class="footer-contact">
+                <h4>Nous contacter</h4>
+                <p>📞 06 85 71 70 13</p>
+                <p>✉️ contact@mpc-chauffage.fr</p>
+                <p>📍 Intervention en Île-de-France</p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="container footer-bottom">
             <p>&copy; 2026 MPC Chauffage. Tous droits réservés.</p>
         </div>
     </footer>
