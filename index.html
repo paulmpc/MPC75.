@@ -3,451 +3,782 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Diagnostic complet et solutions de chauffage en Essonne (91). MPC Chauffage, l'expert local pour entretenir, fiabiliser ou remplacer votre système." />
-    <title>MPC Chauffage - Diagnostic et Solutions de Chauffage dans le 91</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <meta name="description" content="MPC Chauffage : L'expertise technique en Essonne (91). Diagnostic complet, entretien, optimisation et installation de systèmes de chauffage résidentiels." />
+    <title>MPC Chauffage | L'expertise technique pour votre chauffage dans le 91</title>
+    
+    <!-- Typographie élégante et professionnelle (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Styles additionnels spécifiques à la Landing Page (pour ne pas casser le style.css principal) */
-        html { scroll-behavior: smooth; }
-        .faq-details {
-            background: #fff;
-            border: 1px solid var(--border-color, #e5e7eb);
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s ease;
+        /* ================= VARIABLES & RESET ================= */
+        :root {
+            --primary: #0f172a; /* Bleu nuit très profond / Slate 900 */
+            --primary-light: #1e293b;
+            --accent: #2563eb; /* Bleu vif professionnel / Blue 600 */
+            --accent-hover: #1d4ed8;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --radius: 0.5rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .faq-details[open] { border-color: var(--blue-600, #2563eb); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .faq-summary { font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--text-gray-900); }
-        .faq-summary::-webkit-details-marker { display: none; }
-        .faq-summary::after { content: "+"; font-size: 1.5rem; color: var(--blue-600); }
-        .faq-details[open] .faq-summary::after { content: "−"; }
-        .faq-content { padding-top: 1rem; color: var(--text-gray-700); line-height: 1.6; }
-        .method-step { text-align: center; position: relative; padding: 2rem; background: #fff; border-radius: 1rem; border: 1px solid var(--border-color); }
-        .step-number { background: var(--blue-600); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.25rem; margin: -3rem auto 1rem auto; border: 4px solid #f9fafb; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Loading state form */
-        #formMessage { display: none; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem; font-weight: 500; }
-        #formMessage.success { display: block; background-color: #d1fae5; color: #065f46; border: 1px solid #34d399; }
-        #formMessage.error { display: block; background-color: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
-        .btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        html { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            scroll-behavior: smooth; 
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        body { overflow-x: hidden; }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* ================= TYPOGRAPHIE ================= */
+        h1, h2, h3, h4 { color: var(--primary); font-weight: 700; line-height: 1.2; }
+        .text-accent { color: var(--accent); }
+        
+        .section-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* ================= LAYOUT & UTILS ================= */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section { padding: 6rem 0; }
+        .bg-white { background-color: #ffffff; }
+        .bg-gray { background-color: var(--bg-light); }
+        .bg-primary { background-color: var(--primary); color: #fff; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.75rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+        .btn-outline {
+            background-color: transparent;
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+        .btn-outline:hover {
+            background-color: #ffffff;
+            color: var(--primary);
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-img { height: 40px; }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-links a:not(.btn):hover { color: var(--accent); }
+        
+        /* ================= HERO ================= */
+        .hero {
+            padding: 12rem 0 8rem 0;
+            background-color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('assets/img/general/pac.webp');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            mix-blend-mode: luminosity;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+        .hero h1 {
+            color: #ffffff;
+            font-size: 3.5rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            color: #cbd5e1;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* ================= CREDIBILITY LOGOS ================= */
+        .logos-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+        .logos-title {
+            text-align: center;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+        .logos-grid img {
+            height: 35px;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+        .logos-grid img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* ================= DIAGNOSTIC & METHOD ================= */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: #fff;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        .card:hover {
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ================= EXPERTISE / SOLUTIONS ================= */
+        .expertise-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .check-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+            margin-top: 0.25rem;
+        }
+        .solutions-box {
+            background: var(--primary);
+            padding: 3rem;
+            border-radius: var(--radius);
+            color: #fff;
+        }
+        .solutions-box h3 { color: #fff; margin-bottom: 2rem; }
+        .solution-item {
+            border-left: 2px solid rgba(255,255,255,0.2);
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .solution-item:last-child { margin-bottom: 0; }
+        .solution-item h4 { color: #fff; font-size: 1.125rem; margin-bottom: 0.5rem; }
+        .solution-item p { color: #cbd5e1; font-size: 0.95rem; }
+
+        /* ================= REVIEWS ================= */
+        .review-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .review-author {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        /* ================= FAQ ================= */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+        .faq-item:first-child { border-top: 1px solid var(--border); }
+        .faq-summary {
+            padding: 1.5rem 0;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-summary::-webkit-details-marker { display: none; }
+        .faq-icon {
+            width: 20px; height: 20px;
+            transition: transform 0.3s ease;
+        }
+        details[open] .faq-icon { transform: rotate(45deg); }
+        .faq-content {
+            padding-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        /* ================= CONTACT FORM ================= */
+        .contact-section { padding: 6rem 0; }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        .contact-info {
+            background: var(--primary);
+            color: #fff;
+            padding: 4rem 3rem;
+        }
+        .contact-info h2 { color: #fff; margin-bottom: 1rem; font-size: 2rem; }
+        .contact-info p { color: #cbd5e1; margin-bottom: 3rem; }
+        
+        .info-block { margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .info-block svg { width: 24px; height: 24px; color: var(--accent); flex-shrink: 0; }
+        .info-label { font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;}
+        .info-value { font-size: 1.125rem; font-weight: 600; }
+
+        .contact-form-container { padding: 4rem 3rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--bg-light);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background-color: #fff;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .checkbox-group input { margin-top: 0.25rem; }
+        .checkbox-group label { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+        .form-message {
+            display: none;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .form-message.success {
+            display: block;
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        .form-message.error {
+            display: block;
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            background: #020617;
+            color: #94a3b8;
+            padding: 4rem 0 2rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        .footer-title {
+            color: #fff;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a:hover { color: #fff; }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.75rem; }
+            .expertise-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Bouton menu mobile à implémenter si besoin */
+            .hero { padding: 8rem 0 5rem 0; text-align: center; }
+            .hero-actions { flex-direction: column; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .logos-grid { gap: 2rem; }
+            .contact-info, .contact-form-container { padding: 2.5rem 1.5rem; }
+            .section { padding: 4rem 0; }
+        }
     </style>
 </head>
-
 <body>
-    <!-- ================= HEADER AVEC LOGO ================= -->
+
+    <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo-link" title="Haut de page">
-                <img src="assets/img/logos/logo-mpc.svg" alt="Logo MPC Chauffage" class="header-logo" onerror="this.src='https://placehold.co/200x50/2563eb/white?text=LOGO+MPC'" />
+            <a href="#" title="Accueil MPC Chauffage">
+                <!-- SVG Logo Placeholder élégant -->
+                <svg width="140" height="35" viewBox="0 0 140 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" fill="#0f172a" font-weight="700" font-family="Inter" font-size="22">MPC</text>
+                    <text x="50" y="24" fill="#64748b" font-weight="400" font-family="Inter" font-size="18">Chauffage</text>
+                </svg>
             </a>
-            <nav class="main-nav">
-                <a href="#diagnostic">Le Diagnostic</a>
+            <nav class="nav-links">
                 <a href="#expertise">Notre Expertise</a>
-                <a href="#methode">Notre Méthode</a>
-                <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1rem; color: white;">Prendre RDV</a>
+                <a href="#diagnostic">Le Diagnostic</a>
+                <a href="#methode">Méthodologie</a>
+                <a href="#contact" class="btn btn-primary">Demander un audit</a>
             </nav>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
     </header>
 
-    <main>
-        <!-- ================= HERO ================= -->
-        <section class="hero">
-            <img src="assets/img/general/pac.webp" alt="Chauffagiste en intervention" class="hero-bg" style="filter: brightness(0.7);" />
-            <div class="hero-overlay" style="background: linear-gradient(to right, rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.6), transparent);"></div>
-            <div class="container hero-content">
-                <span style="display:inline-block; background: var(--blue-600); color: white; padding: 0.25rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.875rem; margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase;">Intervention exclusive en Essonne (91)</span>
-                <h1 class="hero-title" style="font-size: 3.5rem; font-weight: 700;">Ne changez pas votre chauffage à l'aveugle.</h1>
-                <p class="hero-subtitle" style="font-size: 1.25rem; max-width: 600px; line-height: 1.6;">
-                    Entretien, optimisation ou remplacement ? Nous réalisons un <strong>diagnostic technique complet</strong> de votre installation pour vous conseiller la solution la plus juste, sans discours commercial agressif.
-                </p>
-                <div class="hero-buttons mt-8">
-                    <a href="#contact" class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 2rem;">Demander mon diagnostic</a>
-                    <a href="#diagnostic" class="btn btn-outline-white" style="font-size: 1.125rem; padding: 1rem 2rem;">En savoir plus</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= RÉASSURANCE & PREUVE ================= -->
-        <section class="trust-section" style="padding-top: 5rem; padding-bottom: 5rem; background: #fff;">
-            <div class="container text-center">
-                <h2 style="font-size: 1.5rem; color: var(--text-gray-600); font-weight: 500; margin-bottom: 3rem;">L'exigence industrielle appliquée à votre domicile</h2>
-                
-                <div class="logos-slider-container" style="margin-bottom: 4rem;">
-                    <div class="logos-track">
-                        <!-- Duplication pour effet infini -->
-                        <img src="assets/img/logos/orange.svg" alt="Orange" class="logo-img" />
-                        <img src="assets/img/logos/carrefour.svg" alt="Carrefour" class="logo-img" />
-                        <img src="assets/img/logos/casino.svg" alt="Casino" class="logo-img" />
-                        <img src="assets/img/logos/cedeo.png" alt="Cedeo" class="logo-img" />
-                        <img src="assets/img/logos/plateforme.png" alt="La Plateforme du Bâtiment" class="logo-img" />
-                        <img src="assets/img/logos/pointp.png" alt="Point P" class="logo-img" />
-                        <img src="assets/img/logos/isover.png" alt="Isover" class="logo-img" />
-                        <!-- Clones -->
-                        <img src="assets/img/logos/orange.svg" alt="Orange" class="logo-img" />
-                        <img src="assets/img/logos/carrefour.svg" alt="Carrefour" class="logo-img" />
-                        <img src="assets/img/logos/casino.svg" alt="Casino" class="logo-img" />
-                        <img src="assets/img/logos/cedeo.png" alt="Cedeo" class="logo-img" />
-                        <img src="assets/img/logos/plateforme.png" alt="La Plateforme du Bâtiment" class="logo-img" />
-                        <img src="assets/img/logos/pointp.png" alt="Point P" class="logo-img" />
-                        <img src="assets/img/logos/isover.png" alt="Isover" class="logo-img" />
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">🔍</div>
-                        <h3 class="stat-title">Approche Technique</h3>
-                        <p class="stat-subtext" style="color: var(--text-gray-900);">Pas de vente forcée, mais un audit précis de votre installation existante.</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📍</div>
-                        <h3 class="stat-title">Proximité (91)</h3>
-                        <p class="stat-subtext" style="color: var(--text-gray-900);">Une entreprise locale et réactive, proche de chez vous en Essonne.</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🛡️</div>
-                        <h3 class="stat-title">Sérieux & Fiabilité</h3>
-                        <p class="stat-subtext" style="color: var(--text-gray-900);">Le savoir-faire des grands chantiers mis au service des particuliers.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= LE DIAGNOSTIC (Quoi et Pourquoi) ================= -->
-        <section id="diagnostic" class="services-section bg-gray-50 border-top">
-            <div class="container">
-                <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 4rem;">
-                    <h2 class="section-title" style="margin-bottom: 1.5rem;">Pourquoi commencer par un diagnostic complet ?</h2>
-                    <p class="text-lg text-gray-700">Chaque maison est unique. Remplacer un système de chauffage sans auditer l'existant est une erreur coûteuse. Notre objectif est de comprendre ce qui ne va pas avant de vous proposer la moindre solution.</p>
-                </div>
-                
-                <div class="grid lg-grid-cols-3 gap-8" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-                        <h3 class="font-bold text-xl mb-4 text-blue-700">1. État général</h3>
-                        <p class="text-gray-600">Nous vérifions l'âge, l'usure et l'état de sécurité de votre chaudière ou de votre pompe à chaleur actuelle.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-                        <h3 class="font-bold text-xl mb-4 text-blue-700">2. Performances réelles</h3>
-                        <p class="text-gray-600">Votre système surconsomme-t-il ? La chaleur est-elle bien répartie ? Nous traquons les déperditions et les dysfonctionnements.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-                        <h3 class="font-bold text-xl mb-4 text-blue-700">3. Bilan honnête</h3>
-                        <p class="text-gray-600">Nous vous remettons nos conclusions claires : un simple entretien suffit-il, ou un remplacement est-il nécessaire et rentable ?</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= PROBLÈMES TRAITÉS ================= -->
-        <section id="expertise" class="py-20 bg-white">
-            <div class="container">
-                <div class="grid contact-grid gap-12" style="display: grid; grid-template-columns: 1fr; align-items: center;">
-                    @media (min-width: 1024px) { style="grid-template-columns: 1fr 1fr;" }
-                    
-                    <div>
-                        <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Reconnaissez-vous l'une de ces situations ?</h2>
-                        <ul class="check-list" style="font-size: 1.125rem;">
-                            <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
-                                <span style="color: var(--blue-600); font-size: 1.5rem;">⚠️</span>
-                                <div>
-                                    <strong style="display: block; color: var(--text-gray-900);">Une chaudière vieillissante qui inquiète</strong>
-                                    <span style="color: var(--text-gray-600); font-size: 1rem;">Elle a plus de 10 ans et vous craignez la panne en plein hiver.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
-                                <span style="color: var(--blue-600); font-size: 1.5rem;">📈</span>
-                                <div>
-                                    <strong style="display: block; color: var(--text-gray-900);">Des factures d'énergie en hausse inexpliquée</strong>
-                                    <span style="color: var(--text-gray-600); font-size: 1rem;">Votre système consomme plus qu'avant pour un confort moindre.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
-                                <span style="color: var(--blue-600); font-size: 1.5rem;">🥶</span>
-                                <div>
-                                    <strong style="display: block; color: var(--text-gray-900);">Un confort thermique insuffisant ou irrégulier</strong>
-                                    <span style="color: var(--text-gray-600); font-size: 1rem;">Certaines pièces restent froides, le chauffage peine à démarrer.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 1.5rem; display: flex; align-items: start; gap: 1rem;">
-                                <span style="color: var(--blue-600); font-size: 1.5rem;">🤔</span>
-                                <div>
-                                    <strong style="display: block; color: var(--text-gray-900);">Des doutes face aux offres du marché</strong>
-                                    <span style="color: var(--text-gray-600); font-size: 1rem;">Vous envisagez une Pompe à Chaleur mais vous voulez l'avis d'un vrai technicien, pas d'un commercial.</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: var(--blue-50); padding: 3rem; border-radius: 1.5rem;">
-                        <h3 class="font-bold text-2xl mb-6 text-blue-700">Nos 3 Niveaux de Réponse</h3>
-                        <div class="space-y-6">
-                            <div style="background: #fff; padding: 1.5rem; border-radius: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                                <h4 class="font-bold text-lg text-gray-900">1. L'Entretien & la Fiabilisation</h4>
-                                <p class="text-gray-600 text-sm mt-2">Si votre système est sain, nous effectuons un entretien rigoureux pour prolonger sa durée de vie et optimiser ses performances.</p>
-                            </div>
-                            <div style="background: #fff; padding: 1.5rem; border-radius: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                                <h4 class="font-bold text-lg text-gray-900">2. L'Optimisation</h4>
-                                <p class="text-gray-600 text-sm mt-2">Désembouage des radiateurs, réglages des thermostats, petite remise aux normes pour retrouver le confort d'origine.</p>
-                            </div>
-                            <div style="background: #fff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                                <h4 class="font-bold text-lg text-gray-900">3. Le Remplacement (PAC / Chaudière)</h4>
-                                <p class="text-gray-600 text-sm mt-2">Si nécessaire, nous concevons et installons un nouveau système (Pompe à Chaleur ou Chaudière haute performance) parfaitement dimensionné à votre maison.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= NOTRE MÉTHODE ================= -->
-        <section id="methode" class="bg-gray-50 py-20 border-top">
-            <div class="container">
-                <h2 class="section-title">Une méthode simple et transparente</h2>
-                
-                <div class="grid lg-grid-cols-3 gap-8" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 4rem;">
-                    <div class="method-step shadow-md">
-                        <div class="step-number">1</div>
-                        <h3 class="font-bold text-xl mb-3">Prise de contact</h3>
-                        <p class="text-gray-600">Vous remplissez le formulaire. Nous vous rappelons sous 24h pour échanger brièvement sur votre situation et convenir d'un rendez-vous.</p>
-                    </div>
-                    <div class="method-step shadow-md">
-                        <div class="step-number">2</div>
-                        <h3 class="font-bold text-xl mb-3">Le Diagnostic sur place</h3>
-                        <p class="text-gray-600">Notre technicien se déplace chez vous en Essonne (91) pour auditer votre installation, écouter vos besoins et identifier les contraintes.</p>
-                    </div>
-                    <div class="method-step shadow-md">
-                        <div class="step-number">3</div>
-                        <h3 class="font-bold text-xl mb-3">Conseil & Intervention</h3>
-                        <p class="text-gray-600">Nous vous remettons nos recommandations claires (entretien ou devis de remplacement) et intervenons dans les règles de l'art.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= AVIS GOOGLE (Preuve finale) ================= -->
-        <section class="reviews-section bg-white border-top">
-            <div class="container">
-                <h2 class="section-title">Nos clients en témoignent</h2>
-                <div class="reviews-header">
-                    <img src="assets/img/logos/Google-logo.svg" alt="Avis Google" class="google-logo" onerror="this.src='https://placehold.co/150x50/ffffff/374151?text=Avis+Google'" />
-                    <p class="reviews-score">
-                        <span class="stars">★★★★★</span> 4.9/5 sur Google
-                    </p>
-                </div>
-                <div class="testimonials-grid" style="height: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                    <!-- Témoignages statiques pour la landing page (plus fiables que l'animation infinie) -->
-                    <div class="testimonial-card">
-                        <div>
-                            <p class="testi-text">"Excellente prestation. Le technicien a pris le temps de faire un vrai diagnostic avant de me proposer de changer ma chaudière. Très honnête et travail soigné."</p>
-                            <p class="testi-author">Paul L. - Pontoise</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div>
-                            <p class="testi-text">"Je recommande MPC à 100%. Ils ne poussent pas à la consommation. Mon problème venait juste d'un embouage, vite réglé."</p>
-                            <p class="testi-author">Antoine P. - Massy</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div>
-                            <p class="testi-text">"Installation d'une pompe à chaleur parfaite. Conseil technique pointu, on sent qu'ils ont l'habitude des grosses installations."</p>
-                            <p class="testi-author">Sophie M. - Evry</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= FAQ ================= -->
-        <section class="py-20 bg-gray-50 border-top">
-            <div class="container" style="max-width: 800px;">
-                <h2 class="section-title">Questions fréquentes</h2>
-                
-                <details class="faq-details">
-                    <summary class="faq-summary">Dans quelles villes intervenez-vous ?</summary>
-                    <div class="faq-content">
-                        Nous intervenons exclusivement pour les particuliers propriétaires situés dans le département de l'Essonne (91) et ses communes limitrophes directes. Cette proximité nous permet de garantir une grande réactivité.
-                    </div>
-                </details>
-                
-                <details class="faq-details">
-                    <summary class="faq-summary">Le diagnostic m'engage-t-il à faire des travaux ?</summary>
-                    <div class="faq-content">
-                        Absolument pas. Le diagnostic est une évaluation technique objective. À l'issue de celui-ci, nous vous présentons nos recommandations (qui peuvent se limiter à un simple entretien). Vous êtes totalement libre de la suite.
-                    </div>
-                </details>
-                
-                <details class="faq-details">
-                    <summary class="faq-summary">Proposez-vous uniquement des pompes à chaleur (PAC) ?</summary>
-                    <div class="faq-content">
-                        Non. Bien que la pompe à chaleur soit une excellente solution dans de nombreux cas, elle n'est pas adaptée à toutes les maisons. Nous installons et entretenons également des chaudières gaz à très haute performance si c'est la solution la plus pertinente pour votre logement.
-                    </div>
-                </details>
-                
-                <details class="faq-details">
-                    <summary class="faq-summary">Peut-on vous contacter pour un système qui fonctionne encore ?</summary>
-                    <div class="faq-content">
-                        C'est même fortement conseillé ! Anticiper permet d'optimiser votre système actuel pour faire des économies, ou de préparer sereinement un remplacement avant que la chaudière ne tombe en panne au cœur de l'hiver.
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- ================= CONTACT & FORMULAIRE ================= -->
-        <section id="contact" class="py-20 bg-white border-top">
-            <div class="container max-w-7xl">
-                <div class="grid contact-grid shadow-xl rounded-2xl overflow-hidden" style="display: grid; grid-template-columns: 1fr; background: #fff; border: 1px solid var(--border-color);">
-                    @media (min-width: 1024px) { style="grid-template-columns: 4fr 6fr;" }
-                    
-                    <!-- Info gauche -->
-                    <div class="bg-blue-600 text-white p-10 flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold mb-6">Prêt à faire le point sur votre chauffage ?</h2>
-                        <p class="mb-8 text-blue-100 text-lg">Remplissez ce formulaire pour nous décrire brièvement votre situation. Un expert vous rappellera sous 24h pour planifier votre diagnostic en Essonne.</p>
-                        
-                        <div class="mt-auto space-y-6">
-                            <div class="flex items-center gap-4">
-                                <span style="font-size: 1.5rem;">📞</span>
-                                <div>
-                                    <p style="color: var(--blue-100); font-size: 0.875rem;">Ligne directe</p>
-                                    <p class="font-bold text-xl">06 85 71 70 13</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <span style="font-size: 1.5rem;">📍</span>
-                                <div>
-                                    <p style="color: var(--blue-100); font-size: 0.875rem;">Zone d'intervention</p>
-                                    <p class="font-bold text-lg">Essonne (91)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Formulaire droite -->
-                    <div class="p-10">
-                        <h3 class="text-2xl font-bold mb-6 text-gray-900">Demande de Diagnostic</h3>
-                        <form id="leadForm" class="contact-form">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div class="form-group">
-                                    <label for="Prenom">Prénom *</label>
-                                    <input type="text" id="Prenom" name="Prenom" class="form-control" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="Nom">Nom *</label>
-                                    <input type="text" id="Nom" name="Nom" class="form-control" required />
-                                </div>
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div class="form-group">
-                                    <label for="Telephone">Téléphone *</label>
-                                    <input type="tel" id="Telephone" name="Telephone" class="form-control" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="Email">Email *</label>
-                                    <input type="email" id="Email" name="Email" class="form-control" required />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Ville">Ville (Code Postal) *</label>
-                                <input type="text" id="Ville" name="Ville" placeholder="Ex: Massy (91300)" class="form-control" required />
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div class="form-group">
-                                    <label for="Logement">Type de logement *</label>
-                                    <select id="Logement" name="Logement" class="form-control" required>
-                                        <option value="">Sélectionnez...</option>
-                                        <option value="Maison">Maison individuelle</option>
-                                        <option value="Appartement">Appartement</option>
-                                        <option value="Autre">Autre</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Systeme">Chauffage actuel *</label>
-                                    <select id="Systeme" name="Systeme" class="form-control" required>
-                                        <option value="">Sélectionnez...</option>
-                                        <option value="Chaudière Gaz">Chaudière Gaz</option>
-                                        <option value="Chaudière Fioul">Chaudière Fioul</option>
-                                        <option value="Pompe à Chaleur">Pompe à Chaleur</option>
-                                        <option value="Électrique">Électrique (Radiateurs)</option>
-                                        <option value="Autre / Je ne sais pas">Autre / Je ne sais pas</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Besoin">Quel est votre besoin principal ? *</label>
-                                <select id="Besoin" name="Besoin" class="form-control" required>
-                                    <option value="">Sélectionnez...</option>
-                                    <option value="Diagnostic chauffage">Diagnostic complet de mon chauffage</option>
-                                    <option value="Entretien chaudière">Entretien de ma chaudière</option>
-                                    <option value="Remplacement chaudière">Remplacement de mon ancienne chaudière</option>
-                                    <option value="Projet pompe à chaleur">Projet d'installation de Pompe à Chaleur</option>
-                                    <option value="Demande de conseil">Demande de conseil technique</option>
-                                    <option value="Autre">Autre</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Message">Précisions supplémentaires (Optionnel)</label>
-                                <textarea id="Message" name="Message" rows="3" class="form-control" placeholder="Décrivez brièvement votre situation ou vos doutes..."></textarea>
-                            </div>
-
-                            <div class="form-group" style="display: flex; align-items: start; gap: 0.5rem; margin-bottom: 2rem;">
-                                <input type="checkbox" id="rgpd" required style="margin-top: 0.3rem;" />
-                                <label for="rgpd" style="font-size: 0.875rem; color: var(--text-gray-600); font-weight: normal; line-height: 1.4;">
-                                    En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre strict de ma demande de diagnostic et de la relation commerciale qui peut en découler.
-                                </label>
-                            </div>
-
-                            <button type="submit" id="submitBtn" class="btn btn-primary w-full" style="font-size: 1.125rem; padding: 1rem;">Envoyer ma demande</button>
-                            
-                            <div id="formMessage"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ================= FOOTER ENRICHI AVEC LOGO ================= -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <a href="#">
-                    <img src="assets/img/logos/logo-mpc.svg" alt="Logo MPC Chauffage" class="footer-logo" onerror="this.src='https://placehold.co/200x50/ffffff/111827?text=LOGO+MPC'" />
-                </a>
-                <p class="footer-desc">
-                    L'expertise technique locale pour le diagnostic, l'entretien et le remplacement de vos systèmes de chauffage en Essonne.
-                </p>
-            </div>
-            <div class="footer-links">
-                <h4 style="color: white; margin-bottom: 1rem;">Navigation</h4>
-                <ul style="padding: 0; list-style: none;">
-                    <li style="margin-bottom: 0.5rem;"><a href="#diagnostic" style="color: #9ca3af; text-decoration: none;">Le Diagnostic</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="#expertise" style="color: #9ca3af; text-decoration: none;">Problèmes traités</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="#methode" style="color: #9ca3af; text-decoration: none;">Notre méthode</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4 style="color: white; margin-bottom: 1rem;">Nous contacter</h4>
-                <p style="color: #9ca3af; margin-bottom: 0.5rem;">📞 06 85 71 70 13</p>
-                <p style="color: #9ca3af; margin-bottom: 0.5rem;">✉️ contact@mpc-chauffage.fr</p>
-                <p style="color: #9ca3af;">📍 Intervention exclusive 91</p>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="hero-badge">Intervention exclusive en Essonne (91)</span>
+            <h1>L'expertise technique avant toute décision.</h1>
+            <p>Avant d'envisager un remplacement, exigez un diagnostic complet. Nous auditons, entretenons et installons vos systèmes de chauffage avec la rigueur d'un bureau d'études.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Planifier un diagnostic technique</a>
+                <a href="#diagnostic" class="btn btn-outline">Découvrir notre approche</a>
             </div>
         </div>
-        <div class="container footer-bottom" style="border-top: 1px solid #374151; padding-top: 2rem; text-align: center; color: #9ca3af; font-size: 0.875rem;">
-            <p>&copy; 2026 MPC Chauffage. Tous droits réservés.</p>
+    </section>
+
+    <!-- ================= B2B CREDIBILITY ================= -->
+    <section class="logos-section">
+        <div class="container">
+            <h2 class="logos-title">L'exigence des grands chantiers, appliquée à votre domicile</h2>
+            <div class="logos-grid">
+                <!-- Remplacer les src par tes vrais logos, j'ai mis un style CSS pour les rendre professionnels (gris) -->
+                <img src="assets/img/logos/orange.svg" alt="Orange" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/c/c8/Orange_logo.svg'" />
+                <img src="assets/img/logos/carrefour.svg" alt="Carrefour" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/5b/Carrefour_logo.svg'" />
+                <img src="assets/img/logos/pointp.png" alt="Point P" onerror="this.src='https://upload.wikimedia.org/wikipedia/fr/4/41/Point_P_logo.svg'" />
+                <img src="assets/img/logos/cedeo.png" alt="Cedeo" onerror="this.src='https://upload.wikimedia.org/wikipedia/fr/4/47/Cedeo_logo.svg'" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= POURQUOI LE DIAGNOSTIC ================= -->
+    <section id="diagnostic" class="section bg-gray">
+        <div class="container">
+            <div class="text-center mx-auto" style="max-width: 800px;">
+                <h2 class="section-title">Pourquoi notre intervention commence toujours par un audit.</h2>
+                <p class="section-subtitle mx-auto">Chaque habitat possède ses propres contraintes thermiques. Remplacer un équipement sans analyser l'environnement global est une erreur d'ingénierie courante que nous refusons de commettre.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h3>Analyse de l'existant</h3>
+                    <p class="text-muted">Évaluation technique de l'usure, de la sécurité et du dimensionnement de votre chaudière ou de votre pompe à chaleur actuelle.</p>
+                </div>
+                <div class="card">
+                    <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <h3>Bilan des performances</h3>
+                    <p class="text-muted">Identification des déperditions, des surconsommations inexpliquées et des défauts de répartition de la chaleur dans votre logement.</p>
+                </div>
+                <div class="card">
+                    <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <h3>Préconisation objective</h3>
+                    <p class="text-muted">Remise de conclusions claires et chiffrées. Nous privilégions toujours la réparation ou l'optimisation lorsque cela est techniquement viable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= EXPERTISE / SITUATIONS ================= -->
+    <section id="expertise" class="section bg-white">
+        <div class="container expertise-layout">
+            <div>
+                <h2 class="section-title">Des solutions adaptées aux réalités de votre habitat</h2>
+                <p class="section-subtitle" style="margin-bottom: 2rem;">Nous intervenons généralement auprès de propriétaires confrontés à des problématiques précises nécessitant un avis expert plutôt qu'un argumentaire de vente.</p>
+                
+                <ul class="check-list">
+                    <li>
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div>
+                            <strong style="display: block; color: var(--primary); margin-bottom: 0.25rem;">Installation vieillissante ou incertaine</strong>
+                            <span style="color: var(--text-muted); font-size: 0.95rem;">Un équipement de plus de 10 ans dont la fiabilité hivernale n'est plus garantie.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div>
+                            <strong style="display: block; color: var(--primary); margin-bottom: 0.25rem;">Consommations énergétiques inexpliquées</strong>
+                            <span style="color: var(--text-muted); font-size: 0.95rem;">Une dégradation progressive du rendement entraînant des factures en hausse.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div>
+                            <strong style="display: block; color: var(--primary); margin-bottom: 0.25rem;">Répartition inégale de la chaleur</strong>
+                            <span style="color: var(--text-muted); font-size: 0.95rem;">Un confort thermique altéré, nécessitant souvent un rééquilibrage ou un désembouage.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div>
+                            <strong style="display: block; color: var(--primary); margin-bottom: 0.25rem;">Besoin de clarté technique</strong>
+                            <span style="color: var(--text-muted); font-size: 0.95rem;">La volonté d'obtenir l'analyse d'un technicien qualifié face à la multitude d'offres du marché (PAC, Chaudière THPE).</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="solutions-box">
+                <h3>Nos 3 niveaux d'intervention</h3>
+                
+                <div class="solution-item">
+                    <h4>1. La Fiabilisation (Entretien)</h4>
+                    <p>Si l'audit démontre que votre système est sain, nous procédons à une maintenance approfondie pour pérenniser l'équipement existant.</p>
+                </div>
+                
+                <div class="solution-item">
+                    <h4>2. L'Optimisation réseau</h4>
+                    <p>Intervention ciblée (désembouage, réglages hydrauliques, régulation) pour restaurer les performances thermiques d'origine.</p>
+                </div>
+                
+                <div class="solution-item">
+                    <h4>3. Le Remplacement étudié</h4>
+                    <p>Si le matériel est obsolète, conception et installation d'un nouveau système (Pompe à Chaleur ou Chaudière Gaz) strictement dimensionné à vos besoins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= METHODE ================= -->
+    <section id="methode" class="section bg-gray">
+        <div class="container">
+            <div class="text-center mx-auto" style="max-width: 800px; margin-bottom: 4rem;">
+                <h2 class="section-title">Une méthodologie transparente</h2>
+                <p class="section-subtitle mx-auto">Pas de processus complexe, uniquement une approche rigoureuse orientée vers la résolution de votre besoin.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem;">01</div>
+                    <h3>Prise de contact</h3>
+                    <p class="text-muted">Validation rapide de votre demande par téléphone pour comprendre le contexte et fixer un rendez-vous à votre domicile en Essonne.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem;">02</div>
+                    <h3>Audit sur site</h3>
+                    <p class="text-muted">Déplacement d'un technicien qualifié pour procéder au diagnostic complet de l'installation et des émetteurs de chaleur.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 1rem;">03</div>
+                    <h3>Recommandation</h3>
+                    <p class="text-muted">Remise d'un rapport technique et, si nécessaire, d'une proposition d'intervention chiffrée, sans aucun engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= AVIS ================= -->
+    <section class="section bg-white">
+        <div class="container">
+            <h2 class="section-title text-center">L'exigence reconnue par nos clients</h2>
+            <p class="text-center text-muted" style="margin-bottom: 3rem; font-weight: 500;">Évalué 4.9/5 sur la base des avis Google certifiés</p>
+            
+            <div class="grid-3">
+                <div class="review-card">
+                    <p class="review-text">"Une approche radicalement différente des commerciaux habituels. Le technicien a pris le temps d'analyser l'ensemble de mon réseau avant de me confirmer qu'un désembouage suffisait."</p>
+                    <p class="review-author">— Paul L., Pontoise</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Sérieux, ponctuel et très pointu techniquement. L'installation de la pompe à chaleur a été réalisée avec une propreté et une rigueur exemplaires. Je recommande."</p>
+                    <p class="review-author">— Sophie M., Evry</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Une entreprise de confiance qui ne pousse pas à la consommation. Mon ancienne chaudière a été fiabilisée pour passer l'hiver sereinement, nous prévoyons le remplacement l'année prochaine."</p>
+                    <p class="review-author">— Antoine P., Massy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section bg-gray">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title text-center" style="margin-bottom: 3rem;">Questions fréquentes</h2>
+            
+            <div style="background: #fff; border-radius: var(--radius); border: 1px solid var(--border); padding: 0 2rem;">
+                <details class="faq-item" name="faq">
+                    <summary class="faq-summary">
+                        Zone d'intervention géographique
+                        <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </summary>
+                    <div class="faq-content">
+                        Afin de garantir une réactivité optimale et un suivi rigoureux, nous limitons volontairement nos interventions aux propriétaires résidant dans le département de l'Essonne (91) et ses communes limitrophes directes.
+                    </div>
+                </details>
+                
+                <details class="faq-item" name="faq">
+                    <summary class="faq-summary">
+                        Le diagnostic m'engage-t-il contractuellement ?
+                        <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </summary>
+                    <div class="faq-content">
+                        Non. L'audit technique est une démarche d'évaluation. Les préconisations qui en découlent (entretien, réparation, remplacement) vous sont soumises en toute transparence. Vous conservez votre entière liberté de décision.
+                    </div>
+                </details>
+                
+                <details class="faq-item" name="faq">
+                    <summary class="faq-summary">
+                        Quelles technologies installez-vous ?
+                        <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </summary>
+                    <div class="faq-content">
+                        Nous maîtrisons l'ensemble du spectre thermique résidentiel : Pompes à Chaleur (Air/Eau, Air/Air) et Chaudières Gaz à Très Haute Performance Énergétique (THPE). Le choix de la technologie découlera exclusivement des conclusions de notre audit.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT FORM ================= -->
+    <section id="contact" class="contact-section bg-white">
+        <div class="container">
+            <div class="contact-wrapper">
+                
+                <div class="contact-info">
+                    <h2>Initier une demande d'audit</h2>
+                    <p>Renseignez ces quelques informations essentielles. Notre pôle technique vous recontactera sous 24 heures ouvrées pour qualifier votre besoin et planifier une intervention en Essonne.</p>
+                    
+                    <div style="margin-top: auto; padding-top: 2rem;">
+                        <div class="info-block">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <div>
+                                <div class="info-label">Ligne technique directe</div>
+                                <div class="info-value">06 85 71 70 13</div>
+                            </div>
+                        </div>
+                        <div class="info-block">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <div>
+                                <div class="info-label">Périmètre d'intervention</div>
+                                <div class="info-value">Essonne (91)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="leadForm">
+                        <!-- Champs obligatoires -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="Nom" class="form-label">Nom et Prénom *</label>
+                                <input type="text" id="Nom" name="Nom" class="form-control" required placeholder="Ex: Jean Dupont" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Telephone" class="form-label">Téléphone *</label>
+                                <input type="tel" id="Telephone" name="Telephone" class="form-control" required placeholder="06 XX XX XX XX" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CodePostal" class="form-label">Code Postal de l'intervention *</label>
+                            <input type="text" id="CodePostal" name="CodePostal" class="form-control" required placeholder="Ex: 91300" pattern="[0-9]{5}" title="Veuillez saisir un code postal valide à 5 chiffres" />
+                        </div>
+
+                        <!-- Champs facultatifs -->
+                        <div class="form-group">
+                            <label for="Email" class="form-label">Adresse e-mail (Facultatif)</label>
+                            <input type="email" id="Email" name="Email" class="form-control" placeholder="votre.email@exemple.com" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Message" class="form-label">Précisions sur l'installation (Facultatif)</label>
+                            <textarea id="Message" name="Message" rows="3" class="form-control" placeholder="Indiquez ici toute information utile à la préparation de notre appel..."></textarea>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="rgpd" required />
+                            <label for="rgpd">En soumettant cette demande, j'accepte que mes informations soient utilisées exclusivement dans le cadre de ma recherche de solution de chauffage.</label>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.125rem;">Transmettre ma demande</button>
+                        
+                        <div id="formMessage" class="form-message"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <!-- Logo Footer textuel sobre -->
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1rem; letter-spacing: -0.05em;">MPC Chauffage</div>
+                    <p style="max-width: 300px; font-size: 0.95rem;">L'ingénierie thermique résidentielle en Essonne. L'assurance d'un diagnostic rigoureux et d'une exécution dans les règles de l'art.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Expertise</h4>
+                    <ul class="footer-links">
+                        <li><a href="#diagnostic">Audit Technique</a></li>
+                        <li><a href="#expertise">Entretien & Optimisation</a></li>
+                        <li><a href="#expertise">Installation PAC / Gaz</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links" style="color: #cbd5e1;">
+                        <li style="margin-bottom: 0.5rem;">06 85 71 70 13</li>
+                        <li style="margin-bottom: 0.5rem;">contact@mpc-chauffage.fr</li>
+                        <li>Intervention 91 exclusivement</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MPC Chauffage. Tous droits réservés. | Mentions Légales</p>
+            </div>
         </div>
     </footer>
 
-    <!-- SCRIPT GESTION DU FORMULAIRE GOOGLE SHEETS -->
+    <!-- ================= SCRIPT FORMULAIRE ================= -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // REMPLACE CETTE URL PAR CELLE DE TON APP SCRIPT GOOGLE
+            // URL de ton Google Apps Script mis à jour
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_METS_TON_ID_ICI_yD_yK/exec";
             
             const form = document.getElementById('leadForm');
@@ -456,45 +787,40 @@
 
             if(form) {
                 form.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Empêche le rechargement de la page
+                    e.preventDefault();
                     
-                    // Sécurité basique
                     if(!document.getElementById('rgpd').checked) return;
 
-                    // État de chargement
+                    // État de chargement (sobre)
                     submitBtn.disabled = true;
-                    submitBtn.textContent = 'Envoi en cours...';
-                    formMessage.className = '';
+                    submitBtn.textContent = 'Transmission en cours...';
+                    formMessage.className = 'form-message';
                     formMessage.textContent = '';
 
-                    // Récupération des données
                     const formData = new FormData(form);
 
-                    // Envoi via fetch vers Google Sheets (mode no-cors souvent nécessaire pour Apps Script)
+                    // Requete Fetch (mode no-cors classique pour GSheet)
                     fetch(GOOGLE_SCRIPT_URL, {
                         method: 'POST',
                         body: formData
                     })
                     .then(response => {
-                        // Succès
-                        formMessage.className = 'success';
-                        formMessage.textContent = '✅ Votre demande a bien été envoyée. Un expert MPC Chauffage vous rappellera sous 24h.';
+                        formMessage.className = 'form-message success';
+                        formMessage.textContent = 'Votre demande a été transmise avec succès. Notre équipe technique vous contactera sous 24 heures.';
                         form.reset();
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Envoyer ma demande';
                     })
                     .catch(error => {
-                        // Erreur
                         console.error('Erreur:', error);
-                        formMessage.className = 'error';
-                        formMessage.textContent = '❌ Une erreur est survenue. Veuillez nous contacter directement par téléphone au 06 85 71 70 13.';
+                        formMessage.className = 'form-message error';
+                        formMessage.textContent = 'Une erreur inattendue s\'est produite. Nous vous invitons à nous joindre directement par téléphone au 06 85 71 70 13.';
+                    })
+                    .finally(() => {
                         submitBtn.disabled = false;
-                        submitBtn.textContent = 'Envoyer ma demande';
+                        submitBtn.textContent = 'Transmettre ma demande';
                     });
                 });
             }
         });
     </script>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
