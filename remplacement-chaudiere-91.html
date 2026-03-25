@@ -1,6 +1,24 @@
 <!doctype html>
 <html lang="fr">
 <head>
+
+   <!-- Configuration Google Consent Mode v2 (DOIT être avant le snippet Google Ads) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Configuration par défaut : tout est refusé tant que l'utilisateur ne valide pas
+      if(localStorage.getItem('consentMode') === null) {
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied'
+          });
+      } else {
+          gtag('consent', 'default', JSON.parse(localStorage.getItem('consentMode')));
+      }
+    </script>
 <!-- Event snippet for Demande de devis conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
@@ -1058,6 +1076,60 @@ function gtag_report_conversion(url) {
                     });
                 });
             }
+
+             <!-- ================= BANNIÈRE DE CONSENTEMENT (COOKIES) ================= -->
+    <div id="cookieConsentBanner" class="cookie-banner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <strong>Respect de votre vie privée</strong>
+                Nous utilisons des cookies pour mesurer les performances de nos annonces publicitaires et vous proposer une meilleure expérience. Vous pouvez accepter ou refuser ce suivi.
+            </div>
+            <div class="cookie-actions">
+                <button id="btnAcceptCookies" class="btn btn-primary">Accepter</button>
+                <button id="btnDenyCookies" class="btn btn-outline-dark">Refuser</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SCRIPTS JAVASCRIPT ================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- 1. Gestion de la bannière de consentement ---
+            const cookieBanner = document.getElementById('cookieConsentBanner');
+            const btnAccept = document.getElementById('btnAcceptCookies');
+            const btnDeny = document.getElementById('btnDenyCookies');
+
+            // Afficher la bannière si aucun choix n'a été fait
+            if (localStorage.getItem('consentMode') === null) {
+                // Petit délai pour l'animation
+                setTimeout(() => {
+                    cookieBanner.classList.add('show');
+                }, 500);
+            }
+
+            // Fonction pour mettre à jour le consentement Google et fermer la bannière
+            function setConsent(granted) {
+                const consentObj = {
+                    'ad_storage': granted ? 'granted' : 'denied',
+                    'ad_user_data': granted ? 'granted' : 'denied',
+                    'ad_personalization': granted ? 'granted' : 'denied',
+                    'analytics_storage': granted ? 'granted' : 'denied'
+                };
+                
+                // Informe Google Ads de la mise à jour du consentement
+                gtag('consent', 'update', consentObj);
+                
+                // Sauvegarde le choix dans le navigateur
+                localStorage.setItem('consentMode', JSON.stringify(consentObj));
+                
+                // Ferme la bannière
+                cookieBanner.classList.remove('show');
+            }
+
+            btnAccept.addEventListener('click', () => setConsent(true));
+            btnDeny.addEventListener('click', () => setConsent(false));
+
 
             // Gestion de la soumission du formulaire
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8cSEw18m_wCGNvWlpqhGekOpKhBzF3-ng7tlytEKnhXb1cJ0b0QMD3X71jNSyggz9/exec";
