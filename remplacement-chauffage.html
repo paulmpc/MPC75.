@@ -1,6 +1,26 @@
 <!doctype html>
 <html lang="fr">
 <head>
+<!-- Event snippet for Demande de devis conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17902488856/LjcRCMzd-OsbEJiaydhC',
+      'value': 1.0,
+      'currency': 'EUR',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+    
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17902488856"></script>
 <script>
@@ -912,7 +932,6 @@
     </section>
 
     <!-- ================= CONTACT FORM ================= -->
-    <!-- ================= CONTACT FORM ================= -->
     <section id="contact" class="contact-section bg-white">
         <div class="container">
             <div class="contact-wrapper">
@@ -1069,6 +1088,10 @@
                         formMessage.className = 'form-message success';
                         formMessage.textContent = 'Votre dossier a bien été transmis. Un conseiller technique vous rappelle très vite.';
                         form.reset();
+                        // Appel du tag de conversion Google Ads APRES la soumission réussie
+                        if (typeof gtag_report_conversion === 'function') {
+                            gtag_report_conversion();
+                        }
                     })
                     .catch(error => {
                         console.error('Erreur:', error);
