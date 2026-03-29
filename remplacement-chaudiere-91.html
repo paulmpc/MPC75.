@@ -1068,11 +1068,25 @@ function gtag_report_conversion(url) {
         </div>
     </footer>
 
-    <!-- ================= SCRIPT JAVASCRIPT ================= -->
+   <!-- ================= BANNIÈRE DE CONSENTEMENT (COOKIES) ================= -->
+    <div id="cookieConsentBanner" class="cookie-banner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <strong>Respect de votre vie privée</strong>
+                Nous utilisons des cookies pour mesurer les performances de nos annonces publicitaires et vous proposer une meilleure expérience. Vous pouvez accepter ou refuser ce suivi.
+            </div>
+            <div class="cookie-actions">
+                <button id="btnAcceptCookies" class="btn btn-primary">Accepter</button>
+                <button id="btnDenyCookies" class="btn btn-outline-dark">Refuser</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SCRIPT JAVASCRIPT COMPLET ================= -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // Gestion Menu Mobile
+            // --- 1. Gestion Menu Mobile ---
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             const navItems = document.querySelectorAll('.nav-links a');
@@ -1089,38 +1103,17 @@ function gtag_report_conversion(url) {
                 });
             }
 
-             <!-- ================= BANNIÈRE DE CONSENTEMENT (COOKIES) ================= -->
-    <div id="cookieConsentBanner" class="cookie-banner">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <strong>Respect de votre vie privée</strong>
-                Nous utilisons des cookies pour mesurer les performances de nos annonces publicitaires et vous proposer une meilleure expérience. Vous pouvez accepter ou refuser ce suivi.
-            </div>
-            <div class="cookie-actions">
-                <button id="btnAcceptCookies" class="btn btn-primary">Accepter</button>
-                <button id="btnDenyCookies" class="btn btn-outline-dark">Refuser</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= SCRIPTS JAVASCRIPT ================= -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- 1. Gestion de la bannière de consentement ---
+            // --- 2. Gestion de la bannière de consentement ---
             const cookieBanner = document.getElementById('cookieConsentBanner');
             const btnAccept = document.getElementById('btnAcceptCookies');
             const btnDeny = document.getElementById('btnDenyCookies');
 
-            // Afficher la bannière si aucun choix n'a été fait
             if (localStorage.getItem('consentMode') === null) {
-                // Petit délai pour l'animation
                 setTimeout(() => {
-                    cookieBanner.classList.add('show');
+                    if(cookieBanner) cookieBanner.classList.add('show');
                 }, 500);
             }
 
-            // Fonction pour mettre à jour le consentement Google et fermer la bannière
             function setConsent(granted) {
                 const consentObj = {
                     'ad_storage': granted ? 'granted' : 'denied',
@@ -1129,21 +1122,20 @@ function gtag_report_conversion(url) {
                     'analytics_storage': granted ? 'granted' : 'denied'
                 };
                 
-                // Informe Google Ads de la mise à jour du consentement
-                gtag('consent', 'update', consentObj);
+                // Vérifie que gtag existe bien avant de l'appeler
+                if (typeof gtag === 'function') {
+                    gtag('consent', 'update', consentObj);
+                }
                 
-                // Sauvegarde le choix dans le navigateur
                 localStorage.setItem('consentMode', JSON.stringify(consentObj));
-                
-                // Ferme la bannière
-                cookieBanner.classList.remove('show');
+                if(cookieBanner) cookieBanner.classList.remove('show');
             }
 
-            btnAccept.addEventListener('click', () => setConsent(true));
-            btnDeny.addEventListener('click', () => setConsent(false));
+            if(btnAccept) btnAccept.addEventListener('click', () => setConsent(true));
+            if(btnDeny) btnDeny.addEventListener('click', () => setConsent(false));
 
 
-            // Gestion de la soumission du formulaire
+            // --- 3. Gestion de la soumission du formulaire ---
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8cSEw18m_wCGNvWlpqhGekOpKhBzF3-ng7tlytEKnhXb1cJ0b0QMD3X71jNSyggz9/exec";
             
             const form = document.getElementById('leadForm');
@@ -1152,7 +1144,8 @@ function gtag_report_conversion(url) {
 
             if(form) {
                 form.addEventListener('submit', function(e) {
-                    e.preventDefault();
+                    // Cette ligne cruciale empêche la page de se recharger !
+                    e.preventDefault(); 
                     
                     if(!document.getElementById('rgpd').checked) return;
 
@@ -1172,9 +1165,10 @@ function gtag_report_conversion(url) {
                         formMessage.className = 'form-message success';
                         formMessage.textContent = 'Votre dossier a bien été transmis. Un conseiller technique vous rappelle très vite.';
                         form.reset();
+                        
                         // Appel du tag de conversion Google Ads APRES la soumission réussie
                         if (typeof gtag_report_conversion === 'function') {
-                            gtag_report_conversion();
+                            gtag_report_conversion(); // Pas d'URL fournie = pas de redirection
                         }
                     })
                     .catch(error => {
@@ -1184,7 +1178,7 @@ function gtag_report_conversion(url) {
                     })
                     .finally(() => {
                         submitBtn.disabled = false;
-                        submitBtn.textContent = 'Demander l\'analyse de mon projet';
+                        submitBtn.textContent = 'Envoyer ma demande'; // Remet le texte du bouton à l'état initial
                     });
                 });
             }
