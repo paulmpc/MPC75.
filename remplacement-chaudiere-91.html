@@ -2,42 +2,41 @@
 <html lang="fr">
 <head>
 
-   <script>
+   <!-- ================= SCRIPTS DE SUIVI (À PLACER DANS LE <head>) ================= -->
+
+<!-- 1. Configuration Google Consent Mode v2 (OBLIGATOIRE EN PREMIER) -->
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
 
-  // Configuration par défaut du consentement
-  if(localStorage.getItem('consentMode') === null) {
+  // On vérifie s'il y a déjà un consentement enregistré par votre bannière
+  var savedConsent = localStorage.getItem('consentMode');
+  if(savedConsent) {
+      gtag('consent', 'default', JSON.parse(savedConsent));
+  } else {
+      // Consentement refusé par défaut avant le choix de l'utilisateur
       gtag('consent', 'default', {
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied',
         'analytics_storage': 'denied',
-
+        'wait_for_update': 500 // Laisse 500ms à la bannière pour se charger
       });
-  } else {
-      gtag('consent', 'default', JSON.parse(localStorage.getItem('consentMode')));
   }
 </script>
 
+<!-- 2. Chargement du script global Google Ads (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18040914631"></script>
 <script>
   gtag('js', new Date());
   gtag('config', 'AW-18040914631');
 </script>
 
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "w3g34mo3jn");
-</script>
-
+<!-- 3. Fonction de conversion Google Ads (Sera appelée par votre formulaire) -->
 <script>
 function gtag_report_conversion(url) {
   var callback = function () {
-    if (typeof(url) != 'undefined') {
+    if (typeof(url) !== 'undefined') {
       window.location = url;
     }
   };
@@ -51,15 +50,17 @@ function gtag_report_conversion(url) {
 }
 </script>
 
-   <script type="text/javascript">
+<!-- 4. Microsoft Clarity -->
+<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "w3g34mo3jn");
 </script>
+
+
    
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Remplacement de chauffage en Essonne (91) pour les particuliers. Chaudière gaz, pompe à chaleur, ballon d'eau chaude. Analyse sérieuse et devis honnête avant toute installation." />
     <title>Remplacement Chauffage & Chaudière 91 (Essonne) | Artisans Sérieux | MPC</title>
