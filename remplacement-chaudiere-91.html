@@ -2,32 +2,38 @@
 <html lang="fr">
 <head>
 
-   <script type="text/javascript">
+   <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Configuration par défaut du consentement
+  if(localStorage.getItem('consentMode') === null) {
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+
+      });
+  } else {
+      gtag('consent', 'default', JSON.parse(localStorage.getItem('consentMode')));
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18040914631"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'AW-18040914631');
+</script>
+
+<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "w3g34mo3jn");
 </script>
-   <!-- Configuration Google Consent Mode v2 (DOIT être avant le snippet Google Ads) -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      
-      // Configuration par défaut : tout est refusé tant que l'utilisateur ne valide pas
-      if(localStorage.getItem('consentMode') === null) {
-          gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'analytics_storage': 'denied'
-          });
-      } else {
-          gtag('consent', 'default', JSON.parse(localStorage.getItem('consentMode')));
-      }
-    </script>
-<!-- Event snippet for Envoi de formulaire de lead conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+
 <script>
 function gtag_report_conversion(url) {
   var callback = function () {
@@ -45,17 +51,14 @@ function gtag_report_conversion(url) {
 }
 </script>
 
-
-    
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18040914631"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18040914631');
+   <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w3g34mo3jn");
 </script>
+   
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Remplacement de chauffage en Essonne (91) pour les particuliers. Chaudière gaz, pompe à chaleur, ballon d'eau chaude. Analyse sérieuse et devis honnête avant toute installation." />
