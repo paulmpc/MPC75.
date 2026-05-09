@@ -32,25 +32,9 @@
   gtag('config', 'AW-18040914631');
 </script>
 
-<!-- 3. Fonction de conversion Google Ads (Sera appelée par votre formulaire) -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) !== 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-18040914631/tnxLCPmluo8cEMeFyppD',
-      'value': 1.0,
-      'currency': 'EUR',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
+<!-- MODIFICATION : La fonction gtag_report_conversion a été supprimée d'ici car elle est inutile pour un formulaire sans redirection. L'appel se fait directement en bas de page. -->
 
-<!-- 4. Microsoft Clarity -->
+<!-- 3. Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -1025,6 +1009,7 @@ function gtag_report_conversion(url) {
                             <label for="rgpd">En envoyant ma demande, j'accepte que l'on me recontacte au sujet de mon installation de chauffage.</label>
                         </div>
 
+                        <!-- L'appel Google Ads ne doit SURTOUT PAS se faire sur le onclick de ce bouton -->
                         <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.125rem;">Envoyer ma demande</button>
                         
                         <div id="formMessage" class="form-message"></div>
@@ -1166,9 +1151,14 @@ function gtag_report_conversion(url) {
                         formMessage.textContent = 'Votre dossier a bien été transmis. Un conseiller technique vous rappelle très vite.';
                         form.reset();
                         
-                        // Appel du tag de conversion Google Ads APRES la soumission réussie
-                        if (typeof gtag_report_conversion === 'function') {
-                            gtag_report_conversion(); // Pas d'URL fournie = pas de redirection
+                        // MODIFICATION GOOGLE ADS : Appel direct de l'événement de conversion ICI
+                        // Cela ne s'exécute QUE si le formulaire a réussi à partir
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'conversion', {
+                                'send_to': 'AW-18040914631/tnxLCPmluo8cEMeFyppD',
+                                'value': 1.0,
+                                'currency': 'EUR'
+                            });
                         }
                     })
                     .catch(error => {
